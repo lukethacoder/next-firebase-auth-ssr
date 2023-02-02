@@ -1,5 +1,6 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import { Layout } from '@app/components'
+
 export default function Home() {
   return (
     <>
@@ -9,14 +10,13 @@ export default function Home() {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <main>
-        <h1>Home</h1>
-        <ul>
-          <li>
-            <Link href="/ssr-protected">SSR Protected Page</Link>
-          </li>
-        </ul>
-      </main>
+      <Layout>
+        <main>
+          <p style={{ margin: '0 0 16px' }}>
+            this is a non-restricted home page
+          </p>
+        </main>
+      </Layout>
     </>
   )
 }

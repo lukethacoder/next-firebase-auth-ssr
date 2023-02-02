@@ -1,8 +1,11 @@
-
+:root {
+  --max-width: 1200px;
+}
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: 'Jost', sans-serif;
 }
 
 html,
@@ -18,6 +21,9 @@ body {
   padding: 2rem;
 }
 
+button {
+  font-size: 16px;
+}
 a {
   color: inherit;
   text-decoration: underline;
@@ -33,4 +39,52 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+main {
+  max-width: var(--max-width);
+  width: 100%;
+  margin: 0 auto;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0 auto 16px;
+  max-width: var(--max-width);
+  width: 100%;
+}
+@media (min-width: 768px) {
+  nav {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 2px 8px;
+  flex-wrap: wrap;
+}
+@media (min-width: 768px) {
+  .nav-items {
+    align-items: center;
+    gap: 16px;
+  }
+}
+
+.logout {
+  background-color: transparent;
+  text-decoration: underline;
+  border: none;
+}
+
+.user-data {
+  background-color: rgba(0,0,0,0.2);
+  padding: 16px;
+  width: auto;
 }

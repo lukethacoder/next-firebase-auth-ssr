@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { AppProps } from 'next/app'
 import nookies from 'nookies'
+import { FirebaseAppProvider, AuthProvider } from 'reactfire'
 
 import { initializeApp } from 'firebase/app'
 import { onIdTokenChanged, User } from 'firebase/auth'
@@ -11,8 +12,6 @@ import {
   inMemoryPersistence,
 } from 'firebase/auth'
 
-import { FirebaseAppProvider, AuthProvider } from 'reactfire'
-
 import configuration from '@app/configuration'
 import { isBrowser } from '@app/lib'
 import '@app/styles/globals.css'
@@ -21,8 +20,7 @@ function App(props: AppProps) {
   const { Component, pageProps } = props
   const [admin, setAdmin] = useState<User | null>(null)
 
-  // we initialize the firebase app
-  // using the configuration that we defined above
+  // initialize the firebase app
   const app = initializeApp(configuration.firebase)
 
   // make sure we're not using IndexedDB when SSR
@@ -44,15 +42,10 @@ function App(props: AppProps) {
     const unsubscribe = onIdTokenChanged(auth, async (user) => {
       if (user) {
         setAdmin(user)
-        console.log('user ', user)
-        console.log('user.toJSON ', user.toJSON())
-
         try {
           const token = await user.getIdToken()
-          console.log('token ', token)
           nookies.set(undefined, 'token', token, { path: '/' })
         } catch (error) {
-          console.log('no user? ', error)
           nookies.set(undefined, 'token', '', { path: '/' })
         }
       } else {
