@@ -150,6 +150,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
       },
     }
   } catch (error) {
+    console.log('error ', error)
     return {
       props: {
         isLoggedIn: false,
