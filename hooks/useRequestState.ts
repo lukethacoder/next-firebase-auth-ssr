@@ -1,24 +1,24 @@
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react'
 
 type State<Data, ErrorType> =
   | {
-      data: Data;
-      loading: false;
-      success: true;
-      error: Maybe<ErrorType>;
+      data: Data
+      loading: false
+      success: true
+      error: Maybe<ErrorType>
     }
   | {
-      data: undefined;
-      loading: true;
-      success: false;
-      error: Maybe<ErrorType>;
+      data: undefined
+      loading: true
+      success: false
+      error: Maybe<ErrorType>
     }
   | {
-      data: undefined;
-      loading: false;
-      success: false;
-      error: Maybe<ErrorType>;
-    };
+      data: undefined
+      loading: false
+      success: false
+      error: Maybe<ErrorType>
+    }
 
 /**
  * @name useRequestState
@@ -29,7 +29,7 @@ export function useRequestState<Data = unknown, ErrorType = unknown>() {
     success: false,
     error: undefined,
     data: undefined,
-  });
+  })
 
   const setLoading = useCallback((loading: boolean) => {
     setState({
@@ -37,8 +37,8 @@ export function useRequestState<Data = unknown, ErrorType = unknown>() {
       success: false,
       data: undefined,
       error: undefined,
-    });
-  }, []);
+    })
+  }, [])
 
   const setData = useCallback((data: Data) => {
     setState({
@@ -46,8 +46,8 @@ export function useRequestState<Data = unknown, ErrorType = unknown>() {
       success: true,
       loading: false,
       error: undefined,
-    });
-  }, []);
+    })
+  }, [])
 
   const setError = useCallback((error: ErrorType) => {
     setState({
@@ -55,8 +55,8 @@ export function useRequestState<Data = unknown, ErrorType = unknown>() {
       loading: false,
       success: false,
       error,
-    });
-  }, []);
+    })
+  }, [])
 
   return {
     state,
@@ -64,5 +64,5 @@ export function useRequestState<Data = unknown, ErrorType = unknown>() {
     setLoading,
     setData,
     setError,
-  };
+  }
 }

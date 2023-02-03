@@ -1,10 +1,11 @@
 import { useCallback, useEffect } from 'react'
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { GoogleAuthProvider } from 'firebase/auth'
 
 import { useSignInWithProvider } from '@app/hooks'
 import { EmailPasswordSignIn, Layout } from '@app/components'
-import Head from 'next/head'
+import configuration from '@app/configuration'
 
 const SignIn = () => {
   const [signInWithProvider, signInWithProviderState] = useSignInWithProvider()
@@ -13,7 +14,6 @@ const SignIn = () => {
   const AuthProviderButton = () => {
     return (
       <button
-        className='rounded-lg p-2 font-bold bg-red-400 text-white'
         onClick={() => {
           signInWithProvider(new GoogleAuthProvider())
         }}
@@ -24,7 +24,7 @@ const SignIn = () => {
   }
 
   const onSignIn = useCallback(() => {
-    return router.push('/ssr-protected')
+    return router.push(configuration.paths.appHome)
   }, [router])
 
   useEffect(() => {

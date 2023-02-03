@@ -1,9 +1,10 @@
+import { NextPageContext } from 'next'
 import Head from 'next/head'
+import { UserRecord } from 'firebase-admin/lib/auth/user-record'
 import nookies from 'nookies'
+
 import { adminSDK } from '@app/firebase/admin'
 import { Layout } from '@app/components'
-import { UserRecord } from 'firebase-admin/lib/auth/user-record'
-import { NextPageContext } from 'next'
 
 interface ISsrProtectedPage {
   user?: {
@@ -23,7 +24,6 @@ export default function SsrProtectedPage({
 }: ISsrProtectedPage) {
   console.log('user ', user)
 
-  
   return (
     <>
       <Head>
@@ -51,7 +51,9 @@ export default function SsrProtectedPage({
                   <p>email: {user && user.email}</p>
                   {user && user.customClaims && (
                     <>
-                      <h2 style={{ fontSize: '16px', margin: '8px 0 0'}}>customClaims</h2>
+                      <h2 style={{ fontSize: '16px', margin: '8px 0 0' }}>
+                        customClaims
+                      </h2>
                       <ul>
                         {Object.keys(user.customClaims).map((claimKey) =>
                           !user.customClaims ? null : (
@@ -76,8 +78,6 @@ export default function SsrProtectedPage({
 }
 
 export const getServerSideProps = async (context: NextPageContext) => {
-  console.log('getServerSideProps')
-
   const cookies = nookies.get(context)
   if (!cookies.token) {
     return {
@@ -135,7 +135,6 @@ export const getServerSideProps = async (context: NextPageContext) => {
 
     // we also have access to our custom claims here
     // via `user.customClaims`
-
     const { email, displayName, customClaims } = user
 
     return {
@@ -145,6 +144,7 @@ export const getServerSideProps = async (context: NextPageContext) => {
           uid,
           email,
           displayName,
+          // make sure there are no `undefined` values returned here, Next doesn't like them
           customClaims: customClaims || null,
         },
       },

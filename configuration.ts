@@ -11,7 +11,7 @@ const configuration = {
   paths: {
     signIn: '/auth/sign-in',
     signUp: '/auth/sign-up',
-    appHome: '/dashboard',
+    appHome: '/ssr-protected',
   },
 }
 

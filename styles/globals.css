@@ -17,7 +17,7 @@ body {
 
 body {
   color: #ffffff;
-  background: rgb(64, 27 ,27);
+  background: rgb(64, 27, 27);
   padding: 2rem;
 }
 
@@ -42,19 +42,19 @@ ul {
 }
 
 main {
-  max-width: var(--max-width);
   width: 100%;
+  max-width: var(--max-width);
   margin: 0 auto;
 }
 
 nav {
+  width: 100%;
+  max-width: var(--max-width);
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
   gap: 8px;
   margin: 0 auto 16px;
-  max-width: var(--max-width);
-  width: 100%;
 }
 @media (min-width: 768px) {
   nav {
@@ -81,10 +81,11 @@ nav {
   background-color: transparent;
   text-decoration: underline;
   border: none;
+  cursor: pointer;
 }
 
 .user-data {
-  background-color: rgba(0,0,0,0.2);
-  padding: 16px;
   width: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 16px;
 }

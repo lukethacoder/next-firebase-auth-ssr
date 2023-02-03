@@ -5,6 +5,7 @@ import { GoogleAuthProvider } from 'firebase/auth'
 import { useSignInWithProvider } from '@app/hooks'
 import { EmailPasswordSignUpForm, Layout } from '@app/components'
 import Head from 'next/head'
+import configuration from '@app/configuration'
 
 const SignUp = () => {
   const [signInWithProvider, signInWithProviderState] = useSignInWithProvider()
@@ -14,7 +15,6 @@ const SignUp = () => {
   const AuthProviderButton = () => {
     return (
       <button
-        className='rounded-lg p-2 font-bold bg-red-400 text-white'
         onClick={() => {
           signInWithProvider(new GoogleAuthProvider())
         }}
@@ -25,7 +25,7 @@ const SignUp = () => {
   }
 
   const onSignup = useCallback(async () => {
-    router.push('/ssr-protected')
+    router.push(configuration.paths.appHome)
   }, [router])
 
   useEffect(() => {

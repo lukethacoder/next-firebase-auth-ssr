@@ -1,6 +1,7 @@
+import { ReactNode } from 'react'
 import { Navigation } from '@app/components'
 
-export function Layout({ children }) {
+export function Layout({ children }: { children: ReactNode }) {
   return (
     <>
       <Navigation />

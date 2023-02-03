@@ -13,7 +13,6 @@ import {
 } from 'firebase/auth'
 
 import configuration from '@app/configuration'
-import { isBrowser } from '@app/lib'
 import '@app/styles/globals.css'
 
 function App(props: AppProps) {
@@ -25,9 +24,10 @@ function App(props: AppProps) {
 
   // make sure we're not using IndexedDB when SSR
   // as it is only supported on browser environments
-  const persistence = isBrowser()
-    ? indexedDBLocalPersistence
-    : inMemoryPersistence
+  const persistence =
+    typeof window !== 'undefined'
+      ? indexedDBLocalPersistence
+      : inMemoryPersistence
 
   const auth = initializeAuth(app, { persistence })
 

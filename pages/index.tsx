@@ -6,7 +6,10 @@ export default function Home() {
     <>
       <Head>
         <title>next-firebase-auth-ssr</title>
-        <meta name='description' content='Next based application with Firebase SSR Authentication' />
+        <meta
+          name='description'
+          content='Next based application with Firebase SSR Authentication'
+        />
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>

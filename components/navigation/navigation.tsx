@@ -1,17 +1,19 @@
 import Link from 'next/link'
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/router'
 import { useAuth } from 'reactfire'
+
+import configuration from '@app/configuration'
 
 export function Navigation() {
   const auth = useAuth()
-  const router = useRouter();
+  const router = useRouter()
 
   const handleSignOut = () => {
     // sign out the firebase user client-side
     auth.signOut()
 
     // force SSR pages to reload their data
-    router.replace(router.asPath);
+    router.replace(router.asPath)
   }
 
   return (
@@ -22,11 +24,11 @@ export function Navigation() {
         </h1>
       </div>
       <div className='nav-items'>
-        <Link href='/ssr-protected'>SSR Protected Page</Link>
+        <Link href={configuration.paths.appHome}>SSR Protected Page</Link>
         {!auth.currentUser ? (
           <>
-            <Link href='/auth/sign-in'>Login</Link>
-            <Link href='/auth/sign-up'>Sign up</Link>
+            <Link href={configuration.paths.signIn}>Login</Link>
+            <Link href={configuration.paths.signUp}>Sign up</Link>
           </>
         ) : (
           <button className='logout' onClick={handleSignOut}>
